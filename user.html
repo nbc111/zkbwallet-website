@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户功能 - ZKBWallet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .page-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .feature-detail {
+            padding: 100px 0;
+        }
+        
+        .feature-detail:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .feature-content.reverse {
+            direction: rtl;
+        }
+        
+        .feature-content.reverse > * {
+            direction: ltr;
+        }
+        
+        .feature-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .feature-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        
+        .feature-list i {
+            color: #10b981;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-demo {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .demo-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .wallet-demo {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .balance-display {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .balance-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .balance-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .token-list {
+            space-y: 15px;
+        }
+        
+        .token-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .token-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .token-info {
+            flex: 1;
+        }
+        
+        .token-name {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .token-symbol {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .token-balance {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .defi-dashboard {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .defi-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .defi-stat {
+            text-align: center;
+        }
+        
+        .defi-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .defi-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .nft-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .nft-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nft-image {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .nft-info {
+            padding: 15px;
+        }
+        
+        .nft-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .nft-collection {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .feature-content.reverse {
+                direction: ltr;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .defi-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .nft-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-wallet"></i>
+                <span>ZKBWallet</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="user.html" class="nav-link active">用户功能</a>
+                <a href="developer.html" class="nav-link">开发者</a>
+                <a href="business.html" class="nav-link">企业</a>
+                <a href="#download" class="nav-link">下载</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">用户功能</h1>
+            <p class="page-description">
+                为个人用户设计的强大功能，让您轻松管理数字资产，参与 DeFi 生态，享受 Web3 世界
+            </p>
+        </div>
+    </section>
+
+    <!-- 钱包管理 -->
+    <section class="feature-detail">
+        <div class="container">
+            <div class="feature-content">
+                <div class="feature-text">
+                    <h2>智能钱包管理</h2>
+                    <p>
+                        ZKBWallet 提供直观易用的钱包管理界面，支持多种代币类型，
+                        让您轻松管理所有数字资产。安全可靠的私钥管理，
+                        确保您的资产安全无忧。
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 支持 ERC20、ERC721、ERC875 代币</li>
+                        <li><i class="fas fa-check"></i> 实时价格和余额显示</li>
+                        <li><i class="fas fa-check"></i> 交易历史记录</li>
+                        <li><i class="fas fa-check"></i> 多地址管理</li>
+                        <li><i class="fas fa-check"></i> 私钥安全存储</li>
+                    </ul>
+                </div>
+                <div class="feature-demo">
+                    <div class="demo-title">钱包界面预览</div>
+                    <div class="wallet-demo">
+                        <div class="balance-display">
+                            <div class="balance-amount">2.45 ETH</div>
+                            <div class="balance-label">总余额</div>
+                        </div>
+                        <div class="token-list">
+                            <div class="token-item">
+                                <div class="token-icon">Ξ</div>
+                                <div class="token-info">
+                                    <span class="token-name">Ethereum</span>
+                                    <span class="token-symbol">ETH</span>
+                                </div>
+                                <div class="token-balance">2.45</div>
+                            </div>
+                            <div class="token-item">
+                                <div class="token-icon">🪙</div>
+                                <div class="token-info">
+                                    <span class="token-name">USD Coin</span>
+                                    <span class="token-symbol">USDC</span>
+                                </div>
+                                <div class="token-balance">1,250.00</div>
+                            </div>
+                            <div class="token-item">
+                                <div class="token-icon">🔷</div>
+                                <div class="token-info">
+                                    <span class="token-name">Chainlink</span>
+                                    <span class="token-symbol">LINK</span>
+                                </div>
+                                <div class="token-balance">150.25</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DeFi 集成 -->
+    <section class="feature-detail">
+        <div class="container">
+            <div class="feature-content reverse">
+                <div class="feature-text">
+                    <h2>DeFi 生态集成</h2>
+                    <p>
+                        深度集成主流 DeFi 协议，让您的代币产生收益。
+                        支持借贷、流动性挖矿、质押等 DeFi 功能，
+                        一站式参与去中心化金融生态。
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Aave 借贷协议</li>
+                        <li><i class="fas fa-check"></i> Compound 流动性挖矿</li>
+                        <li><i class="fas fa-check"></i> Uniswap 去中心化交易</li>
+                        <li><i class="fas fa-check"></i> 实时收益追踪</li>
+                        <li><i class="fas fa-check"></i> 风险管理工具</li>
+                    </ul>
+                </div>
+                <div class="feature-demo">
+                    <div class="demo-title">DeFi 仪表板</div>
+                    <div class="defi-dashboard">
+                        <div class="defi-stats">
+                            <div class="defi-stat">
+                                <div class="defi-stat-value">$12,450</div>
+                                <div class="defi-stat-label">总价值锁定</div>
+                            </div>
+                            <div class="defi-stat">
+                                <div class="defi-stat-value">8.5%</div>
+                                <div class="defi-stat-label">年化收益</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>借贷余额</span>
+                                <span>$5,200</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span>流动性挖矿</span>
+                                <span>$7,250</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT 管理 -->
+    <section class="feature-detail">
+        <div class="container">
+            <div class="feature-content">
+                <div class="feature-text">
+                    <h2>NFT 收藏管理</h2>
+                    <p>
+                        完整的 NFT 收藏管理功能，支持查看、交易和展示
+                        您的数字艺术品和收藏品。与主流 NFT 市场集成，
+                        轻松买卖和转移 NFT。
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> NFT 画廊展示</li>
+                        <li><i class="fas fa-check"></i> OpenSea 市场集成</li>
+                        <li><i class="fas fa-check"></i> 批量管理功能</li>
+                        <li><i class="fas fa-check"></i> 收藏品分类</li>
+                        <li><i class="fas fa-check"></i> 交易历史记录</li>
+                    </ul>
+                </div>
+                <div class="feature-demo">
+                    <div class="demo-title">NFT 收藏</div>
+                    <div class="nft-gallery">
+                        <div class="nft-item">
+                            <div class="nft-image">🎨</div>
+                            <div class="nft-info">
+                                <div class="nft-name">CryptoPunk #1234</div>
+                                <div class="nft-collection">CryptoPunks</div>
+                            </div>
+                        </div>
+                        <div class="nft-item">
+                            <div class="nft-image">🦄</div>
+                            <div class="nft-info">
+                                <div class="nft-name">Unicorn #567</div>
+                                <div class="nft-collection">Fantasy Creatures</div>
+                            </div>
+                        </div>
+                        <div class="nft-item">
+                            <div class="nft-image">🏆</div>
+                            <div class="nft-info">
+                                <div class="nft-name">Champion #890</div>
+                                <div class="nft-collection">Sports NFTs</div>
+                            </div>
+                        </div>
+                        <div class="nft-item">
+                            <div class="nft-image">🌟</div>
+                            <div class="nft-info">
+                                <div class="nft-name">Star #111</div>
+                                <div class="nft-collection">Space Collection</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web3 浏览器 -->
+    <section class="feature-detail">
+        <div class="container">
+            <div class="feature-content reverse">
+                <div class="feature-text">
+                    <h2>内置 Web3 浏览器</h2>
+                    <p>
+                        内置安全的 Web3 浏览器，让您直接访问去中心化应用。
+                        支持 WalletConnect 协议，轻松连接桌面端 dApps，
+                        享受无缝的 Web3 体验。
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 安全 dApp 访问</li>
+                        <li><i class="fas fa-check"></i> WalletConnect 支持</li>
+                        <li><i class="fas fa-check"></i> 交易确认界面</li>
+                        <li><i class="fas fa-check"></i> 智能合约交互</li>
+                        <li><i class="fas fa-check"></i> 书签管理</li>
+                    </ul>
+                </div>
+                <div class="feature-demo">
+                    <div class="demo-title">Web3 浏览器</div>
+                    <div style="background: #f8f9fa; border-radius: 15px; padding: 20px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                            <div style="width: 20px; height: 20px; background: #ff5f57; border-radius: 50%; margin-right: 10px;"></div>
+                            <div style="width: 20px; height: 20px; background: #ffbd2e; border-radius: 50%; margin-right: 10px;"></div>
+                            <div style="width: 20px; height: 20px; background: #28ca42; border-radius: 50%; margin-right: 20px;"></div>
+                            <div style="flex: 1; background: white; padding: 8px 15px; border-radius: 20px; font-size: 14px; color: #666;">
+                                https://uniswap.org
+                            </div>
+                        </div>
+                        <div style="background: white; border-radius: 10px; padding: 30px; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 20px;">🦄</div>
+                            <div style="font-size: 1.5rem; font-weight: 600; color: #333; margin-bottom: 10px;">Uniswap</div>
+                            <div style="color: #666; margin-bottom: 30px;">去中心化交易协议</div>
+                            <button style="background: #6366f1; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: 600; cursor: pointer;">
+                                连接钱包
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENS 域名支持 -->
+    <section class="feature-detail">
+        <div class="container">
+            <div class="feature-content">
+                <div class="feature-text">
+                    <h2>ENS 域名支持</h2>
+                    <p>
+                        原生支持以太坊域名服务（ENS），使用易记的域名
+                        进行转账和接收，告别复杂的地址。支持域名解析、
+                        反向解析和子域名管理。
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 域名转账</li>
+                        <li><i class="fas fa-check"></i> 地址簿管理</li>
+                        <li><i class="fas fa-check"></i> 反向解析</li>
+                        <li><i class="fas fa-check"></i> 子域名支持</li>
+                        <li><i class="fas fa-check"></i> 智能合约交互</li>
+                    </ul>
+                </div>
+                <div class="feature-demo">
+                    <div class="demo-title">ENS 转账</div>
+                    <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">发送到</label>
+                            <input type="text" placeholder="输入 ENS 域名" value="alice.eth" style="width: 100%; padding: 15px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 16px;">
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; margin-bottom: 10px; font-weight: 600; color: #333;">金额</label>
+                            <input type="text" placeholder="0.0" value="0.1 ETH" style="width: 100%; padding: 15px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 16px;">
+                        </div>
+                        <button style="width: 100%; background: #6366f1; color: white; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                            发送交易
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安全特性 -->
+    <section class="feature-detail">
+        <div class="container">
+            <div class="feature-content reverse">
+                <div class="feature-text">
+                    <h2>企业级安全</h2>
+                    <p>
+                        采用最先进的安全技术，保护您的数字资产。
+                        Secure Enclave 技术、生物识别、多重验证等
+                        安全措施，确保您的资产安全无忧。
+                    </p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Secure Enclave 技术</li>
+                        <li><i class="fas fa-check"></i> 生物识别解锁</li>
+                        <li><i class="fas fa-check"></i> PIN 码保护</li>
+                        <li><i class="fas fa-check"></i> 多重签名支持</li>
+                        <li><i class="fas fa-check"></i> 冷存储集成</li>
+                    </ul>
+                </div>
+                <div class="feature-demo">
+                    <div class="demo-title">安全设置</div>
+                    <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f0f9ff; border-radius: 10px;">
+                            <i class="fas fa-fingerprint" style="color: #6366f1; font-size: 1.5rem; margin-right: 15px;"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #333;">生物识别</div>
+                                <div style="color: #666; font-size: 0.9rem;">已启用</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f0f9ff; border-radius: 10px;">
+                            <i class="fas fa-shield-alt" style="color: #10b981; font-size: 1.5rem; margin-right: 15px;"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #333;">Secure Enclave</div>
+                                <div style="color: #666; font-size: 0.9rem;">已激活</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f0f9ff; border-radius: 10px;">
+                            <i class="fas fa-key" style="color: #f59e0b; font-size: 1.5rem; margin-right: 15px;"></i>
+                            <div>
+                                <div style="font-weight: 600; color: #333;">PIN 码</div>
+                                <div style="color: #666; font-size: 0.9rem;">已设置</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 行动号召 -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">开始您的 Web3 之旅</h2>
+            <p class="cta-description">
+                下载 ZKBWallet，体验下一代以太坊钱包的强大功能
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    <i class="fas fa-download"></i>
+                    立即下载
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-play"></i>
+                    观看演示
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-wallet"></i>
+                        <span>ZKBWallet</span>
+                    </div>
+                    <p class="footer-description">
+                        下一代以太坊钱包，安全、开源、功能丰富。
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">钱包功能</a></li>
+                        <li><a href="#">Web3 浏览器</a></li>
+                        <li><a href="#">NFT 管理</a></li>
+                        <li><a href="#">DeFi 集成</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开发者</h4>
+                    <ul>
+                        <li><a href="#">API 文档</a></li>
+                        <li><a href="#">SDK 下载</a></li>
+                        <li><a href="#">TokenScript</a></li>
+                        <li><a href="#">开发者社区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>企业</h4>
+                    <ul>
+                        <li><a href="#">白标解决方案</a></li>
+                        <li><a href="#">企业服务</a></li>
+                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ZKBWallet. 保留所有权利。</p>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">开源许可</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

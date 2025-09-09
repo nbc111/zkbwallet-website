@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业解决方案 - ZKBWallet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .page-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .business-section {
+            padding: 100px 0;
+        }
+        
+        .business-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .business-section.dark {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .business-section.dark .section-title,
+        .business-section.dark .section-description {
+            color: white;
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .solution-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .solution-card.dark {
+            background: #2a2a2a;
+            color: white;
+        }
+        
+        .solution-card.featured {
+            border: 2px solid #6366f1;
+        }
+        
+        .solution-card.featured::before {
+            content: '推荐';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #6366f1;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .solution-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .solution-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .solution-card.dark h3 {
+            color: white;
+        }
+        
+        .solution-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .solution-card.dark p {
+            color: #ccc;
+        }
+        
+        .solution-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .solution-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .solution-card.dark .solution-features li {
+            color: white;
+        }
+        
+        .solution-features i {
+            color: #10b981;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .solution-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 10px;
+        }
+        
+        .solution-period {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .solution-card.dark .solution-period {
+            color: #ccc;
+        }
+        
+        .solution-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .solution-btn.primary {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .solution-btn.primary:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .solution-btn.secondary {
+            background: transparent;
+            color: #6366f1;
+            border: 2px solid #6366f1;
+        }
+        
+        .solution-btn.secondary:hover {
+            background: #6366f1;
+            color: white;
+        }
+        
+        .case-study {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px 0;
+        }
+        
+        .case-study.dark {
+            background: #2a2a2a;
+            color: white;
+        }
+        
+        .case-study-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .case-study-logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+        
+        .case-study-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .case-study-info p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .case-study.dark .case-study-info p {
+            color: #ccc;
+        }
+        
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .case-study-text h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .case-study-text p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .case-study.dark .case-study-text p {
+            color: #ccc;
+        }
+        
+        .case-study-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .case-stat {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+        
+        .case-study.dark .case-stat {
+            background: #1a1a1a;
+        }
+        
+        .case-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 5px;
+        }
+        
+        .case-stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .case-study.dark .case-stat-label {
+            color: #ccc;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 40px;
+            right: -15px;
+            width: 30px;
+            height: 2px;
+            background: #e5e7eb;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .step-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-step::after {
+                display: none;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-wallet"></i>
+                <span>ZKBWallet</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="user.html" class="nav-link">用户功能</a>
+                <a href="developer.html" class="nav-link">开发者</a>
+                <a href="business.html" class="nav-link active">企业</a>
+                <a href="#download" class="nav-link">下载</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">企业解决方案</h1>
+            <p class="page-description">
+                为企业和机构提供定制化的区块链钱包解决方案，助力数字化转型
+            </p>
+        </div>
+    </section>
+
+    <!-- 解决方案概览 -->
+    <section class="business-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">企业级解决方案</h2>
+                <p class="section-description">
+                    根据企业规模和需求，提供不同层次的钱包解决方案
+                </p>
+            </div>
+
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>白标钱包</h3>
+                    <p>完全可定制的钱包解决方案，支持品牌定制和功能扩展，快速部署企业专属钱包。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 品牌定制</li>
+                        <li><i class="fas fa-check"></i> 功能定制</li>
+                        <li><i class="fas fa-check"></i> 快速部署</li>
+                        <li><i class="fas fa-check"></i> 技术支持</li>
+                    </ul>
+                    <div class="solution-price">¥50,000</div>
+                    <div class="solution-period">起</div>
+                    <button class="solution-btn primary">联系销售</button>
+                </div>
+
+                <div class="solution-card featured">
+                    <div class="solution-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>企业级管理</h3>
+                    <p>多用户管理、权限控制、审计日志等企业级功能，满足大型机构的管理需求。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 多用户管理</li>
+                        <li><i class="fas fa-check"></i> 权限控制</li>
+                        <li><i class="fas fa-check"></i> 审计日志</li>
+                        <li><i class="fas fa-check"></i> 合规支持</li>
+                        <li><i class="fas fa-check"></i> 24/7 支持</li>
+                    </ul>
+                    <div class="solution-price">¥100,000</div>
+                    <div class="solution-period">起</div>
+                    <button class="solution-btn primary">联系销售</button>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>定制开发</h3>
+                    <p>根据企业特殊需求进行深度定制开发，提供完全个性化的解决方案。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 深度定制</li>
+                        <li><i class="fas fa-check"></i> 专属开发</li>
+                        <li><i class="fas fa-check"></i> 源码交付</li>
+                        <li><i class="fas fa-check"></i> 长期维护</li>
+                    </ul>
+                    <div class="solution-price">¥200,000</div>
+                    <div class="solution-period">起</div>
+                    <button class="solution-btn secondary">获取报价</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section class="business-section dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">成功案例</h2>
+                <p class="section-description">
+                    看看我们如何帮助客户实现数字化转型
+                </p>
+            </div>
+
+            <div class="case-study dark">
+                <div class="case-study-header">
+                    <div class="case-study-logo">🏦</div>
+                    <div class="case-study-info">
+                        <h3>某大型银行</h3>
+                        <p>数字资产管理系统</p>
+                    </div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-text">
+                        <h4>项目背景</h4>
+                        <p>该银行需要为其高净值客户提供数字资产管理服务，包括比特币、以太坊等主流加密货币的存储、交易和管理功能。</p>
+                        <h4>解决方案</h4>
+                        <p>我们为其定制开发了一套完整的数字资产管理系统，包括多签名钱包、冷热钱包分离、合规审计等功能。</p>
+                        <h4>项目成果</h4>
+                        <p>系统上线后，客户资产管理效率提升了 300%，安全事件为零，客户满意度达到 98%。</p>
+                    </div>
+                    <div class="case-study-stats">
+                        <div class="case-stat">
+                            <div class="case-stat-value">300%</div>
+                            <div class="case-stat-label">效率提升</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">0</div>
+                            <div class="case-stat-label">安全事件</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">98%</div>
+                            <div class="case-stat-label">客户满意度</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">6个月</div>
+                            <div class="case-stat-label">开发周期</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study dark">
+                <div class="case-study-header">
+                    <div class="case-study-logo">🏢</div>
+                    <div class="case-study-info">
+                        <h3>某科技公司</h3>
+                        <p>员工代币激励系统</p>
+                    </div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-text">
+                        <h4>项目背景</h4>
+                        <p>该科技公司希望使用区块链技术为员工提供代币激励，包括股权代币、绩效代币等，需要一套完整的管理系统。</p>
+                        <h4>解决方案</h4>
+                        <p>我们为其开发了基于 TokenScript 的智能代币系统，支持多种代币类型、自动发放、锁定期管理等功能。</p>
+                        <h4>项目成果</h4>
+                        <p>系统成功管理了 10,000+ 员工代币，自动化程度达到 95%，大幅降低了管理成本。</p>
+                    </div>
+                    <div class="case-study-stats">
+                        <div class="case-stat">
+                            <div class="case-stat-value">10,000+</div>
+                            <div class="case-stat-label">员工代币</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">95%</div>
+                            <div class="case-stat-label">自动化程度</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">60%</div>
+                            <div class="case-stat-label">成本降低</div>
+                        </div>
+                        <div class="case-stat">
+                            <div class="case-stat-value">4个月</div>
+                            <div class="case-stat-label">开发周期</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section class="business-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">服务流程</h2>
+                <p class="section-description">
+                    从需求分析到项目交付，我们提供全流程专业服务
+                </p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">需求分析</h3>
+                    <p class="step-description">深入了解企业需求，分析业务场景，制定技术方案</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">方案设计</h3>
+                    <p class="step-description">设计系统架构，制定开发计划，确定技术选型</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">开发实施</h3>
+                    <p class="step-description">按照设计方案进行开发，定期汇报进度，确保质量</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">测试部署</h3>
+                    <p class="step-description">全面测试系统功能，部署到生产环境，确保稳定运行</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">培训维护</h3>
+                    <p class="step-description">提供用户培训，持续技术支持，长期维护服务</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术优势 -->
+    <section class="business-section dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">技术优势</h2>
+                <p class="section-description">
+                    基于先进技术栈，为企业提供可靠的技术保障
+                </p>
+            </div>
+
+            <div class="solution-grid">
+                <div class="solution-card dark">
+                    <div class="solution-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>企业级安全</h3>
+                    <p>采用多重安全防护机制，包括硬件安全模块、加密存储、访问控制等，确保企业数据安全。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 硬件安全模块</li>
+                        <li><i class="fas fa-check"></i> 端到端加密</li>
+                        <li><i class="fas fa-check"></i> 多因素认证</li>
+                        <li><i class="fas fa-check"></i> 审计日志</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card dark">
+                    <div class="solution-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h3>高可扩展性</h3>
+                    <p>基于微服务架构，支持水平扩展，能够应对业务快速增长的需求。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 微服务架构</li>
+                        <li><i class="fas fa-check"></i> 水平扩展</li>
+                        <li><i class="fas fa-check"></i> 负载均衡</li>
+                        <li><i class="fas fa-check"></i> 弹性伸缩</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card dark">
+                    <div class="solution-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>高度定制</h3>
+                    <p>提供灵活的定制选项，满足不同企业的特殊需求，支持快速迭代和功能扩展。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 模块化设计</li>
+                        <li><i class="fas fa-check"></i> 插件系统</li>
+                        <li><i class="fas fa-check"></i> API 接口</li>
+                        <li><i class="fas fa-check"></i> 快速迭代</li>
+                    </ul>
+                </div>
+
+                <div class="solution-card dark">
+                    <div class="solution-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>专业支持</h3>
+                    <p>提供 7x24 小时技术支持，专业的技术团队确保系统稳定运行。</p>
+                    <ul class="solution-features">
+                        <li><i class="fas fa-check"></i> 7x24 支持</li>
+                        <li><i class="fas fa-check"></i> 专业团队</li>
+                        <li><i class="fas fa-check"></i> 快速响应</li>
+                        <li><i class="fas fa-check"></i> 远程协助</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">准备开始您的企业区块链之旅？</h2>
+            <p class="cta-description">
+                联系我们的企业解决方案团队，获取定制化服务
+            </p>
+
+            <div class="contact-form">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company">公司名称</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">联系人</label>
+                            <input type="text" id="contact" name="contact" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">邮箱地址</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="solution">感兴趣的服务</label>
+                        <select id="solution" name="solution" required>
+                            <option value="">请选择服务类型</option>
+                            <option value="whitelabel">白标钱包</option>
+                            <option value="enterprise">企业级管理</option>
+                            <option value="custom">定制开发</option>
+                            <option value="consulting">技术咨询</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">项目描述</label>
+                        <textarea id="message" name="message" placeholder="请详细描述您的项目需求和期望"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        提交咨询
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-wallet"></i>
+                        <span>ZKBWallet</span>
+                    </div>
+                    <p class="footer-description">
+                        下一代以太坊钱包，安全、开源、功能丰富。
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">钱包功能</a></li>
+                        <li><a href="#">Web3 浏览器</a></li>
+                        <li><a href="#">NFT 管理</a></li>
+                        <li><a href="#">DeFi 集成</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开发者</h4>
+                    <ul>
+                        <li><a href="#">API 文档</a></li>
+                        <li><a href="#">SDK 下载</a></li>
+                        <li><a href="#">TokenScript</a></li>
+                        <li><a href="#">开发者社区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>企业</h4>
+                    <ul>
+                        <li><a href="#">白标解决方案</a></li>
+                        <li><a href="#">企业服务</a></li>
+                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ZKBWallet. 保留所有权利。</p>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">开源许可</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 表单提交处理
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 获取表单数据
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // 模拟提交
+            alert('感谢您的咨询！我们的团队将在 24 小时内与您联系。');
+            
+            // 重置表单
+            this.reset();
+        });
+    </script>
+</body>
+</html>

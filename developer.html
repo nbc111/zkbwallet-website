@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发者资源 - ZKBWallet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .page-description {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .dev-section {
+            padding: 100px 0;
+        }
+        
+        .dev-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .dev-section.dark {
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .dev-section.dark .section-title,
+        .dev-section.dark .section-description {
+            color: white;
+        }
+        
+        .dev-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .dev-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .dev-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dev-card.dark {
+            background: #2a2a2a;
+            color: white;
+        }
+        
+        .dev-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .dev-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .dev-card.dark h3 {
+            color: white;
+        }
+        
+        .dev-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .dev-card.dark p {
+            color: #ccc;
+        }
+        
+        .dev-link {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .dev-link:hover {
+            color: #8b5cf6;
+        }
+        
+        .code-example {
+            background: #1a1a1a;
+            color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .code-example .comment {
+            color: #6a9955;
+        }
+        
+        .code-example .keyword {
+            color: #569cd6;
+        }
+        
+        .code-example .string {
+            color: #ce9178;
+        }
+        
+        .code-example .function {
+            color: #dcdcaa;
+        }
+        
+        .api-endpoint {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .api-method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .api-method.get {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .api-method.post {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .api-method.put {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .api-method.delete {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        .api-url {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        .api-description {
+            color: #6b7280;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        
+        .sdk-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .sdk-download h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .sdk-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .sdk-btn {
+            background: white;
+            color: #6366f1;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        
+        .sdk-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feature-comparison {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .comparison-table .feature {
+            font-weight: 500;
+        }
+        
+        .comparison-table .check {
+            color: #10b981;
+            text-align: center;
+        }
+        
+        .comparison-table .cross {
+            color: #ef4444;
+            text-align: center;
+        }
+        
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-card.dark {
+            background: #2a2a2a;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .stat-card.dark .stat-label {
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .dev-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sdk-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .comparison-table {
+                font-size: 14px;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-wallet"></i>
+                <span>ZKBWallet</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="user.html" class="nav-link">用户功能</a>
+                <a href="developer.html" class="nav-link active">开发者</a>
+                <a href="business.html" class="nav-link">企业</a>
+                <a href="#download" class="nav-link">下载</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">开发者资源</h1>
+            <p class="page-description">
+                强大的开发工具和 API，让您轻松构建下一代区块链应用
+            </p>
+        </div>
+    </section>
+
+    <!-- SDK 和工具 -->
+    <section class="dev-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">SDK 和开发工具</h2>
+                <p class="section-description">
+                    完整的软件开发工具包，支持多种编程语言，快速集成钱包功能
+                </p>
+            </div>
+            
+            <div class="sdk-download">
+                <h3>立即开始开发</h3>
+                <p>下载我们的 SDK，几分钟内集成钱包功能</p>
+                <div class="sdk-buttons">
+                    <a href="#" class="sdk-btn">
+                        <i class="fab fa-js-square"></i>
+                        JavaScript SDK
+                    </a>
+                    <a href="#" class="sdk-btn">
+                        <i class="fab fa-python"></i>
+                        Python SDK
+                    </a>
+                    <a href="#" class="sdk-btn">
+                        <i class="fab fa-java"></i>
+                        Java SDK
+                    </a>
+                    <a href="#" class="sdk-btn">
+                        <i class="fab fa-swift"></i>
+                        Swift SDK
+                    </a>
+                </div>
+            </div>
+
+            <div class="dev-grid">
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>JavaScript SDK</h3>
+                    <p>适用于 Web 和 Node.js 环境的完整 SDK，支持所有主流浏览器和服务器环境。</p>
+                    <a href="#" class="dev-link">查看文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python SDK</h3>
+                    <p>为 Python 开发者设计的 SDK，支持 Django、Flask 等主流框架。</p>
+                    <a href="#" class="dev-link">查看文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <h3>Android SDK</h3>
+                    <p>原生 Android 开发支持，提供 Kotlin 和 Java 绑定。</p>
+                    <a href="#" class="dev-link">查看文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>iOS SDK</h3>
+                    <p>原生 iOS 开发支持，提供 Swift 和 Objective-C 绑定。</p>
+                    <a href="#" class="dev-link">查看文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API 文档 -->
+    <section class="dev-section dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">REST API 文档</h2>
+                <p class="section-description">
+                    完整的 REST API 接口，支持钱包管理、交易处理、代币操作等功能
+                </p>
+            </div>
+
+            <div class="dev-grid">
+                <div class="dev-card dark">
+                    <h3>钱包管理 API</h3>
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <span class="api-url">/api/v1/wallets</span>
+                        <div class="api-description">获取用户钱包列表</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method post">POST</span>
+                        <span class="api-url">/api/v1/wallets</span>
+                        <div class="api-description">创建新钱包</div>
+                    </div>
+                    <a href="#" class="dev-link">查看完整文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <h3>交易处理 API</h3>
+                    <div class="api-endpoint">
+                        <span class="api-method post">POST</span>
+                        <span class="api-url">/api/v1/transactions</span>
+                        <div class="api-description">创建新交易</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <span class="api-url">/api/v1/transactions/{id}</span>
+                        <div class="api-description">获取交易详情</div>
+                    </div>
+                    <a href="#" class="dev-link">查看完整文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <h3>代币操作 API</h3>
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <span class="api-url">/api/v1/tokens</span>
+                        <div class="api-description">获取支持的代币列表</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method get">GET</span>
+                        <span class="api-url">/api/v1/tokens/balance</span>
+                        <div class="api-description">获取代币余额</div>
+                    </div>
+                    <a href="#" class="dev-link">查看完整文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <h3>Web3 集成 API</h3>
+                    <div class="api-endpoint">
+                        <span class="api-method post">POST</span>
+                        <span class="api-url">/api/v1/web3/connect</span>
+                        <div class="api-description">连接 Web3 应用</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method post">POST</span>
+                        <span class="api-url">/api/v1/web3/sign</span>
+                        <div class="api-description">签名消息</div>
+                    </div>
+                    <a href="#" class="dev-link">查看完整文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TokenScript 技术 -->
+    <section class="dev-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">TokenScript 技术</h2>
+                <p class="section-description">
+                    使用 TokenScript 技术创建智能代币，为代币添加丰富的功能和交互能力
+                </p>
+            </div>
+
+            <div class="dev-grid">
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>智能代币</h3>
+                    <p>为代币添加智能合约功能，实现自动执行、条件触发等高级特性。</p>
+                    <a href="#" class="dev-link">了解详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>安全验证</h3>
+                    <p>内置安全验证机制，确保代币操作的安全性和可靠性。</p>
+                    <a href="#" class="dev-link">了解详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card">
+                    <div class="dev-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3>可组合性</h3>
+                    <p>支持与其他 DeFi 协议组合，创建复杂的金融产品。</p>
+                    <a href="#" class="dev-link">了解详情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="code-example">
+                <div class="comment">// TokenScript 示例：创建可投票的治理代币</div>
+                <div class="keyword">const</div> tokenScript = {
+                    <div class="string">"name"</div>: <div class="string">"GovernanceToken"</div>,
+                    <div class="string">"symbol"</div>: <div class="string">"GOV"</div>,
+                    <div class="string">"functions"</div>: [
+                        {
+                            <div class="string">"name"</div>: <div class="string">"vote"</div>,
+                            <div class="string">"parameters"</div>: [
+                                { <div class="string">"name"</div>: <div class="string">"proposalId"</div>, <div class="string">"type"</div>: <div class="string">"uint256"</div> },
+                                { <div class="string">"name"</div>: <div class="string">"support"</div>, <div class="string">"type"</div>: <div class="string">"bool"</div> }
+                            ],
+                            <div class="string">"gasLimit"</div>: <div class="string">"100000"</div>
+                        }
+                    ],
+                    <div class="string">"views"</div>: [
+                        {
+                            <div class="string">"name"</div>: <div class="string">"getVotingPower"</div>,
+                            <div class="string">"parameters"</div>: [
+                                { <div class="string">"name"</div>: <div class="string">"address"</div>, <div class="string">"type"</div>: <div class="string">"address"</div> }
+                            ]
+                        }
+                    ]
+                };
+            </div>
+        </div>
+    </section>
+
+    <!-- 开发工具 -->
+    <section class="dev-section dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">开发工具</h2>
+                <p class="section-description">
+                    丰富的开发工具和调试功能，让开发和测试变得更加高效
+                </p>
+            </div>
+
+            <div class="dev-grid">
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h3>CLI 工具</h3>
+                    <p>命令行工具，支持钱包创建、交易签名、合约部署等操作。</p>
+                    <a href="#" class="dev-link">下载工具 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>调试工具</h3>
+                    <p>强大的调试工具，支持交易追踪、状态监控、错误诊断。</p>
+                    <a href="#" class="dev-link">查看工具 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3>测试网络</h3>
+                    <p>完整的测试环境，支持多种测试网络和模拟器。</p>
+                    <a href="#" class="dev-link">访问测试网 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>监控面板</h3>
+                    <p>实时监控面板，查看应用性能、用户行为、错误统计。</p>
+                    <a href="#" class="dev-link">查看面板 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能对比 -->
+    <section class="dev-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">功能对比</h2>
+                <p class="section-description">
+                    与其他钱包解决方案的详细功能对比
+                </p>
+            </div>
+
+            <div class="feature-comparison">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>功能特性</th>
+                            <th>ZKBWallet</th>
+                            <th>MetaMask</th>
+                            <th>Trust Wallet</th>
+                            <th>Coinbase Wallet</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature">多代币支持</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">TokenScript 技术</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">开源代码</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">企业级安全</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">白标解决方案</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">开发者 SDK</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">移动端支持</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="feature">硬件钱包支持</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 社区统计 -->
+    <section class="dev-section dark">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">开发者社区</h2>
+                <p class="section-description">
+                    活跃的开发者社区，共同构建 Web3 未来
+                </p>
+            </div>
+
+            <div class="community-stats">
+                <div class="stat-card dark">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">活跃开发者</div>
+                </div>
+                <div class="stat-card dark">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">开源项目</div>
+                </div>
+                <div class="stat-card dark">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">GitHub Stars</div>
+                </div>
+                <div class="stat-card dark">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">技术支持</div>
+                </div>
+            </div>
+
+            <div class="dev-grid">
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3>GitHub 社区</h3>
+                    <p>参与开源开发，提交代码，报告问题，与全球开发者协作。</p>
+                    <a href="#" class="dev-link">访问 GitHub <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Discord 频道</h3>
+                    <p>实时交流，获取帮助，分享经验，与社区成员互动。</p>
+                    <a href="#" class="dev-link">加入 Discord <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>开发者文档</h3>
+                    <p>详细的 API 文档、教程和示例代码，快速上手开发。</p>
+                    <a href="#" class="dev-link">查看文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-card dark">
+                    <div class="dev-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>开发者学院</h3>
+                    <p>在线课程、工作坊和认证计划，提升开发技能。</p>
+                    <a href="#" class="dev-link">开始学习 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速开始 -->
+    <section class="dev-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">快速开始</h2>
+                <p class="section-description">
+                    5 分钟快速集成 ZKBWallet SDK
+                </p>
+            </div>
+
+            <div class="code-example">
+                <div class="comment">// 1. 安装 SDK</div>
+                <div class="keyword">npm</div> install zkbwallet-sdk
+
+                <div class="comment">// 2. 初始化钱包</div>
+                <div class="keyword">import</div> { ZKBWallet } <div class="keyword">from</div> <div class="string">'zkbwallet-sdk'</div>;
+
+                <div class="keyword">const</div> wallet = <div class="keyword">new</div> <div class="function">ZKBWallet</div>({
+                    apiKey: <div class="string">'your-api-key'</div>,
+                    network: <div class="string">'mainnet'</div>
+                });
+
+                <div class="comment">// 3. 创建钱包</div>
+                <div class="keyword">const</div> newWallet = <div class="keyword">await</div> wallet.<div class="function">createWallet</div>();
+
+                <div class="comment">// 4. 获取余额</div>
+                <div class="keyword">const</div> balance = <div class="keyword">await</div> wallet.<div class="function">getBalance</div>(newWallet.address);
+
+                <div class="comment">// 5. 发送交易</div>
+                <div class="keyword">const</div> tx = <div class="keyword">await</div> wallet.<div class="function">sendTransaction</div>({
+                    to: <div class="string">'0x...'</div>,
+                    value: <div class="string">'0.1'</div>,
+                    from: newWallet.address
+                });
+
+                <div class="function">console</div>.<div class="function">log</div>(<div class="string">'Transaction hash:'</div>, tx.hash);
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    开始集成
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-wallet"></i>
+                        <span>ZKBWallet</span>
+                    </div>
+                    <p class="footer-description">
+                        下一代以太坊钱包，安全、开源、功能丰富。
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>产品</h4>
+                    <ul>
+                        <li><a href="#">钱包功能</a></li>
+                        <li><a href="#">Web3 浏览器</a></li>
+                        <li><a href="#">NFT 管理</a></li>
+                        <li><a href="#">DeFi 集成</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开发者</h4>
+                    <ul>
+                        <li><a href="#">API 文档</a></li>
+                        <li><a href="#">SDK 下载</a></li>
+                        <li><a href="#">TokenScript</a></li>
+                        <li><a href="#">开发者社区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>企业</h4>
+                    <ul>
+                        <li><a href="#">白标解决方案</a></li>
+                        <li><a href="#">企业服务</a></li>
+                        <li><a href="#">技术支持</a></li>
+                        <li><a href="#">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ZKBWallet. 保留所有权利。</p>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">服务条款</a>
+                    <a href="#">开源许可</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

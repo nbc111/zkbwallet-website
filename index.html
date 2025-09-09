@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKBWallet - Next-Generation Ethereum Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-wallet"></i>
+                <span>ZKBWallet</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link" data-en="Home" data-zh="首页">Home</a>
+                <a href="#features" class="nav-link" data-en="Features" data-zh="功能">Features</a>
+                <a href="#developers" class="nav-link" data-en="Developers" data-zh="开发者">Developers</a>
+                <a href="#business" class="nav-link" data-en="Business" data-zh="企业">Business</a>
+                <a href="#download" class="nav-link" data-en="Download" data-zh="下载">Download</a>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="zh">中文</button>
+                </div>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页英雄区域 -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span class="badge-text" data-en="New Release - Experience Next-Gen Wallet" data-zh="全新发布 - 体验下一代钱包">New Release - Experience Next-Gen Wallet</span>
+                </div>
+                <h1 class="hero-title">
+                    <span data-en="Redefining" data-zh="重新定义">Redefining</span> <span class="gradient-text" data-en="Digital Asset Management" data-zh="数字资产管理">Digital Asset Management</span>
+                </h1>
+                <p class="hero-description" data-en="ZKBWallet is an intelligent wallet designed for modern Web3 users, integrating core features like DeFi, NFT, and cross-chain capabilities. Easily manage your digital assets, participate in decentralized finance ecosystems, and enjoy secure and convenient blockchain experiences." data-zh="ZKBWallet 是专为现代 Web3 用户设计的智能钱包，集成了 DeFi、NFT、跨链等核心功能，让您轻松管理数字资产，参与去中心化金融生态，享受安全便捷的区块链体验。">
+                    ZKBWallet is an intelligent wallet designed for modern Web3 users, integrating core features like DeFi, NFT, and cross-chain capabilities. Easily manage your digital assets, participate in decentralized finance ecosystems, and enjoy secure and convenient blockchain experiences.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToDownload()">
+                        <i class="fas fa-download"></i>
+                        <span data-en="Download Now" data-zh="立即下载">Download Now</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="openGitHub()">
+                        <i class="fab fa-github"></i>
+                        <span data-en="View Source" data-zh="查看源码">View Source</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="https://alphawallet.com/wp-content/uploads/2020/07/open-source-wallet.png" 
+                     alt="ZKBWallet App Interface" 
+                     class="app-image"
+                     style="width: 100%; height: auto; max-width: 565px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特性区域 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Powerful Features" data-zh="强大的功能特性">Powerful Features</h2>
+                <p class="section-description" data-en="Comprehensive wallet solutions designed for modern blockchain users" data-zh="为现代区块链用户设计的全方位钱包解决方案">
+                    Comprehensive wallet solutions designed for modern blockchain users
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 class="feature-title" data-en="Multi-Token Support" data-zh="多代币支持">Multi-Token Support</h3>
+                    <p class="feature-description" data-en="Support for ERC20, ERC721, ERC875 and other token standards, one-stop management of your digital assets." data-zh="支持 ERC20、ERC721、ERC875 等多种代币标准，一站式管理您的数字资产。">
+                        Support for ERC20, ERC721, ERC875 and other token standards, one-stop management of your digital assets.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title" data-en="Enterprise Security" data-zh="企业级安全">Enterprise Security</h3>
+                    <p class="feature-description" data-en="Using Secure Enclave technology to provide cold wallet-level security, supporting biometric authentication and multi-factor verification." data-zh="采用 Secure Enclave 技术，提供冷钱包级别的安全保障，支持生物识别和多重验证。">
+                        Using Secure Enclave technology to provide cold wallet-level security, supporting biometric authentication and multi-factor verification.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title" data-en="Web3 Browser" data-zh="Web3 浏览器">Web3 Browser</h3>
+                    <p class="feature-description" data-en="Built-in Web3 browser for secure access to decentralized applications, seamlessly connecting to DeFi ecosystems." data-zh="内置 Web3 浏览器，安全访问去中心化应用，无缝连接 DeFi 生态系统。">
+                        Built-in Web3 browser for secure access to decentralized applications, seamlessly connecting to DeFi ecosystems.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="feature-title" data-en="NFT Management" data-zh="NFT 管理">NFT Management</h3>
+                    <p class="feature-description" data-en="Complete NFT collection management, supporting viewing, trading and displaying your digital artworks and collectibles." data-zh="完整的 NFT 收藏管理，支持查看、交易和展示您的数字艺术品和收藏品。">
+                        Complete NFT collection management, supporting viewing, trading and displaying your digital artworks and collectibles.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3 class="feature-title" data-en="WalletConnect" data-zh="WalletConnect">WalletConnect</h3>
+                    <p class="feature-description" data-en="Support for WalletConnect protocol, easily connect to desktop dApps, achieving seamless cross-platform experience." data-zh="支持 WalletConnect 协议，轻松连接桌面端 dApps，实现跨平台无缝体验。">
+                        Support for WalletConnect protocol, easily connect to desktop dApps, achieving seamless cross-platform experience.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="feature-title" data-en="Open Source" data-zh="开源透明">Open Source</h3>
+                    <p class="feature-description" data-en="Fully open source, transparent and auditable code, community-driven development, ensuring security and reliability." data-zh="完全开源，代码透明可审计，社区驱动开发，确保安全性和可靠性。">
+                        Fully open source, transparent and auditable code, community-driven development, ensuring security and reliability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户功能区域 -->
+    <section class="user-features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Designed for Users" data-zh="为个人用户设计">Designed for Users</h2>
+                <p class="section-description" data-en="Simple and intuitive interface with powerful features, making digital asset management effortless" data-zh="简单易用的界面，强大的功能，让您轻松管理数字资产">
+                    Simple and intuitive interface with powerful features, making digital asset management effortless
+                </p>
+            </div>
+            <div class="user-features-content">
+                <div class="user-feature-item">
+                    <div class="feature-content">
+                        <h3 data-en="DeFi Integration" data-zh="DeFi 集成">DeFi Integration</h3>
+                        <p data-en="Integration with mainstream DeFi protocols like Aave and Compound, allowing your tokens to generate returns through liquidity mining and lending." data-zh="与 Aave、Compound 等主流 DeFi 协议集成，让您的代币产生收益，参与流动性挖矿和借贷。">
+                            与 Aave、Compound 等主流 DeFi 协议集成，让您的代币产生收益，参与流动性挖矿和借贷。
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> <span data-en="One-click lending and investment" data-zh="一键借贷和投资">一键借贷和投资</span></li>
+                            <li><i class="fas fa-check"></i> <span data-en="Real-time yield tracking" data-zh="实时收益追踪">实时收益追踪</span></li>
+                            <li><i class="fas fa-check"></i> <span data-en="Risk management tools" data-zh="风险管理工具">风险管理工具</span></li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="defi-dashboard">
+                            <div class="defi-header" data-en="DeFi Dashboard" data-zh="DeFi 仪表板">DeFi Dashboard</div>
+                            <div class="defi-stats">
+                                <div class="defi-stat">
+                                    <span class="stat-label" data-en="Total Value Locked" data-zh="总价值锁定">总价值锁定</span>
+                                    <span class="stat-value">$12,450</span>
+                                </div>
+                                <div class="defi-stat">
+                                    <span class="stat-label" data-en="Annual Yield" data-zh="年化收益">年化收益</span>
+                                    <span class="stat-value">8.5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-feature-item reverse">
+                    <div class="feature-content">
+                        <h3 data-en="ENS Domain Support" data-zh="ENS 域名支持">ENS Domain Support</h3>
+                        <p data-en="Native support for Ethereum Name Service, using memorable domain names for transfers and receipts, saying goodbye to complex addresses." data-zh="原生支持以太坊域名服务，使用易记的域名进行转账和接收，告别复杂的地址。">
+                            原生支持以太坊域名服务，使用易记的域名进行转账和接收，告别复杂的地址。
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> <span data-en="Domain transfers" data-zh="域名转账">域名转账</span></li>
+                            <li><i class="fas fa-check"></i> <span data-en="Address book management" data-zh="地址簿管理">地址簿管理</span></li>
+                            <li><i class="fas fa-check"></i> <span data-en="Smart contract interaction" data-zh="智能合约交互">智能合约交互</span></li>
+                        </ul>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="ens-interface">
+                            <div class="ens-input">
+                                <input type="text" placeholder="Enter ENS domain" value="alice.eth" data-en-placeholder="Enter ENS domain" data-zh-placeholder="输入 ENS 域名">
+                                <button class="btn-send" data-en="Send" data-zh="发送">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 开发者区域 -->
+    <section id="developers" class="developers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Developer Friendly" data-zh="开发者友好">Developer Friendly</h2>
+                <p class="section-description" data-en="Powerful development tools and APIs to help you easily build next-generation blockchain applications" data-zh="强大的开发工具和 API，让您轻松构建下一代区块链应用">
+                    强大的开发工具和 API，让您轻松构建下一代区块链应用
+                </p>
+            </div>
+            <div class="dev-features">
+                <div class="dev-feature">
+                    <div class="dev-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 data-en="TokenScript Technology" data-zh="TokenScript 技术">TokenScript Technology</h3>
+                    <p data-en="Use TokenScript technology to create smart tokens, adding rich functionality and interaction capabilities to tokens." data-zh="使用 TokenScript 技术创建智能代币，为代币添加丰富的功能和交互能力。">
+                        使用 TokenScript 技术创建智能代币，为代币添加丰富的功能和交互能力。
+                    </p>
+                    <a href="#" class="dev-link" data-en="View Documentation" data-zh="查看文档">查看文档 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-feature">
+                    <div class="dev-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3 data-en="SDK and API" data-zh="SDK 和 API">SDK and API</h3>
+                    <p data-en="Complete software development kit supporting multiple programming languages for rapid wallet integration." data-zh="完整的软件开发工具包，支持多种编程语言，快速集成钱包功能。">
+                        完整的软件开发工具包，支持多种编程语言，快速集成钱包功能。
+                    </p>
+                    <a href="#" class="dev-link" data-en="Start Integration" data-zh="开始集成">开始集成 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="dev-feature">
+                    <div class="dev-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 data-en="Development Tools" data-zh="开发工具">Development Tools</h3>
+                    <p data-en="Rich development tools and debugging features to make development and testing more efficient." data-zh="丰富的开发工具和调试功能，让开发和测试变得更加高效。">
+                        丰富的开发工具和调试功能，让开发和测试变得更加高效。
+                    </p>
+                    <a href="#" class="dev-link" data-en="View Tools" data-zh="查看工具">查看工具 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 企业解决方案区域 -->
+    <section id="business" class="business">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Enterprise Solutions" data-zh="企业解决方案">Enterprise Solutions</h2>
+                <p class="section-description" data-en="Customized blockchain wallet solutions for enterprises and institutions" data-zh="为企业和机构提供定制化的区块链钱包解决方案">
+                    为企业和机构提供定制化的区块链钱包解决方案
+                </p>
+            </div>
+            <div class="business-content">
+                <div class="business-features">
+                    <div class="business-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 data-en="White Label Wallet" data-zh="白标钱包">White Label Wallet</h3>
+                        <p data-en="Fully customizable wallet solutions with brand customization and feature expansion support." data-zh="完全可定制的钱包解决方案，支持品牌定制和功能扩展。">
+                            完全可定制的钱包解决方案，支持品牌定制和功能扩展。
+                        </p>
+                    </div>
+                    <div class="business-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 data-en="Enterprise Management" data-zh="企业级管理">Enterprise Management</h3>
+                        <p data-en="Multi-user management, access control, audit logs and other enterprise-level features." data-zh="多用户管理、权限控制、审计日志等企业级功能。">
+                            多用户管理、权限控制、审计日志等企业级功能。
+                        </p>
+                    </div>
+                    <div class="business-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3 data-en="Technical Support" data-zh="技术支持">Technical Support</h3>
+                        <p data-en="Professional technical support team with 7x24 hour service guarantee." data-zh="专业的技术支持团队，7x24小时服务保障。">
+                            专业的技术支持团队，7x24小时服务保障。
+                        </p>
+                    </div>
+                </div>
+                <div class="business-cta">
+                    <h3 data-en="Ready to Start Your Enterprise Blockchain Journey?" data-zh="准备开始您的企业区块链之旅？">准备开始您的企业区块链之旅？</h3>
+                    <p data-en="Contact our enterprise solutions team for customized services." data-zh="联系我们的企业解决方案团队，获取定制化服务。">
+                        联系我们的企业解决方案团队，获取定制化服务。
+                    </p>
+                    <button class="btn btn-primary" data-en="Contact Sales" data-zh="联系销售">联系销售</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">📱</span>
+                    <span class="badge-text" data-en="Available Now - Download and Experience" data-zh="现在可用 - 立即下载体验">Available Now - Download and Experience</span>
+                </div>
+                <h2 class="download-title" data-en="Start Your Web3 Journey" data-zh="开始您的 Web3 之旅">Start Your Web3 Journey</h2>
+                <p class="download-description" data-en="Download ZKBWallet and experience the powerful features of the next-generation Ethereum wallet. Secure, fast, and easy to use, making digital asset management simple." data-zh="下载 ZKBWallet，体验下一代以太坊钱包的强大功能。安全、快速、易用，让数字资产管理变得简单。">
+                    Download ZKBWallet and experience the powerful features of the next-generation Ethereum wallet. Secure, fast, and easy to use, making digital asset management simple.
+                </p>
+                <div class="download-buttons">
+                    <a href="#" class="download-btn" onclick="downloadApp('ios')">
+                        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+                    </a>
+                    <a href="#" class="download-btn" onclick="downloadApp('android')">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Google Play">
+                    </a>
+                    <a href="#" class="download-btn download-btn-android" onclick="downloadAPK()">
+                        <div class="download-btn-content">
+                            <div class="download-btn-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="download-btn-text">
+                                <div class="download-btn-title" data-en="Android APK" data-zh="Android APK">Android APK</div>
+                                <div class="download-btn-subtitle" data-en="Direct Download" data-zh="直接下载">Direct Download</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-wallet"></i>
+                        <span>ZKBWallet</span>
+                    </div>
+                    <p class="footer-description" data-en="Next-generation Ethereum wallet, secure, open source, and feature-rich." data-zh="下一代以太坊钱包，安全、开源、功能丰富。">
+                        Next-generation Ethereum wallet, secure, open source, and feature-rich.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Product" data-zh="产品">Product</h4>
+                    <ul>
+                        <li><a href="#" data-en="Wallet Features" data-zh="钱包功能">Wallet Features</a></li>
+                        <li><a href="#" data-en="Web3 Browser" data-zh="Web3 浏览器">Web3 Browser</a></li>
+                        <li><a href="#" data-en="NFT Management" data-zh="NFT 管理">NFT Management</a></li>
+                        <li><a href="#" data-en="DeFi Integration" data-zh="DeFi 集成">DeFi Integration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Developers" data-zh="开发者">Developers</h4>
+                    <ul>
+                        <li><a href="#" data-en="API Documentation" data-zh="API 文档">API Documentation</a></li>
+                        <li><a href="#" data-en="SDK Download" data-zh="SDK 下载">SDK Download</a></li>
+                        <li><a href="#" data-en="TokenScript" data-zh="TokenScript">TokenScript</a></li>
+                        <li><a href="#" data-en="Developer Community" data-zh="开发者社区">Developer Community</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-en="Business" data-zh="企业">Business</h4>
+                    <ul>
+                        <li><a href="#" data-en="White Label Solutions" data-zh="白标解决方案">White Label Solutions</a></li>
+                        <li><a href="#" data-en="Enterprise Services" data-zh="企业服务">Enterprise Services</a></li>
+                        <li><a href="#" data-en="Technical Support" data-zh="技术支持">Technical Support</a></li>
+                        <li><a href="#" data-en="Contact Us" data-zh="联系我们">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-en="&copy; 2025 ZKBWallet. All rights reserved." data-zh="&copy; 2025 ZKBWallet. 保留所有权利。">&copy; 2025 ZKBWallet. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</a>
+                    <a href="#" data-en="Terms of Service" data-zh="服务条款">Terms of Service</a>
+                    <a href="#" data-en="Open Source License" data-zh="开源许可">Open Source License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
