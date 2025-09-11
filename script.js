@@ -32,9 +32,8 @@ function downloadApp(platform) {
 
 // 下载APK
 function downloadAPK() {
-    // 这里可以替换为实际的APK下载链接
-    alert('APK下载链接即将提供，敬请期待！');
-    // window.open('https://releases.zkbwallet.com/latest.apk', '_blank');
+    // 打开APK下载链接
+    window.open('https://206.238.196.207:36345/down/dC0HHYp1eEuK.apk', '_blank');
 }
 
 function switchLanguage(lang) {
