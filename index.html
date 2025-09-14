@@ -6,6 +6,9 @@
     <title>ZKBWallet - Next-Generation Ethereum Wallet</title>
     
     <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=11">
+    <link rel="shortcut icon" href="favicon.svg?v=11">
+    <link rel="icon" href="favicon.svg?v=11">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -14,6 +17,53 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        // 完全复刻页面左上角Font Awesome图标的favicon
+        function updateFavicon() {
+            // 移除所有现有的favicon链接
+            const existingLinks = document.querySelectorAll("link[rel*='icon']");
+            existingLinks.forEach(link => link.remove());
+            
+            // 创建新的favicon链接，完全匹配页面左上角的Font Awesome图标
+            const link = document.createElement('link');
+            link.type = 'image/svg+xml';
+            link.rel = 'shortcut icon';
+            link.href = 'favicon.svg?v=' + new Date().getTime();
+            document.getElementsByTagName('head')[0].appendChild(link);
+            
+            // 添加标准的icon链接
+            const iconLink = document.createElement('link');
+            iconLink.type = 'image/svg+xml';
+            iconLink.rel = 'icon';
+            iconLink.href = 'favicon.svg?v=' + new Date().getTime();
+            document.getElementsByTagName('head')[0].appendChild(iconLink);
+            
+            // 添加apple-touch-icon
+            const appleLink = document.createElement('link');
+            appleLink.rel = 'apple-touch-icon';
+            appleLink.href = 'favicon.svg?v=' + new Date().getTime();
+            document.getElementsByTagName('head')[0].appendChild(appleLink);
+            
+            // 强制更新页面标题以触发favicon更新
+            const originalTitle = document.title;
+            document.title = originalTitle + ' ';
+            setTimeout(() => {
+                document.title = originalTitle;
+            }, 100);
+        }
+        
+        // 立即更新favicon
+        updateFavicon();
+        // 页面加载完成后再次更新
+        document.addEventListener('DOMContentLoaded', updateFavicon);
+        // 页面完全加载后再次更新
+        window.addEventListener('load', updateFavicon);
+        // 延迟更新以确保完全加载
+        setTimeout(updateFavicon, 1000);
+        // 再次延迟更新
+        setTimeout(updateFavicon, 2000);
+    </script>
 </head>
 <body>
     <!-- 导航栏 -->

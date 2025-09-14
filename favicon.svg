@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="walletGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Font Awesome 6.0.0 fas fa-wallet 官方SVG路径 -->
+  <path fill="url(#walletGradient)" d="M448 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h384c35.35 0 64-28.65 64-64V96c0-35.35-28.65-64-64-64zM64 48h384c26.47 0 48 21.53 48 48v48H16V96c0-26.47 21.53-48 48-48zm384 416H64c-26.47 0-48-21.53-48-48V176h448v240c0 26.47-21.53 48-48 48z"/>
+  <path fill="url(#walletGradient)" d="M336 256c-8.84 0-16 7.16-16 16s7.16 16 16 16 16-7.16 16-16-7.16-16-16-16z"/>
+</svg>
