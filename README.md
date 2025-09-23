@@ -42,6 +42,8 @@ A modern, responsive Ethereum wallet website inspired by AlphaWallet, featuring 
 - **JavaScript (ES6+)** - Native JavaScript, no dependencies
 - **Font Awesome** - Icon library
 - **Google Fonts** - Inter font family
+- **Vercel** - Static site hosting with serverless functions
+- **Node.js** - Serverless API functions for file upload
 
 ## 📱 Responsive Design
 
@@ -56,6 +58,29 @@ The website is fully responsive, supporting the following devices:
 2. Open `index.html` in your browser
 3. Enjoy the modern wallet website experience!
 
+## 📱 APK Upload System
+
+The website includes a complete APK upload system for developers to update the Android app:
+
+### Upload Interface
+- **Web Interface**: https://download.zkbwallets.xyz/upload-apk.html
+- **Drag & Drop Support**: Simply drag APK files to upload
+- **File Validation**: Automatic APK format verification
+- **Progress Tracking**: Real-time upload progress
+
+### API Endpoints
+- **POST** `/api/upload-apk` - Upload APK file
+- **POST** `/api/upload-to-server` - Forward to external server
+
+### File Requirements
+- **Format**: Must be `.apk` file
+- **Size Limit**: Maximum 100MB
+- **Filename**: Any name ending with `.apk` (e.g., `app.apk`, `zkbwallet-v2.0.apk`)
+
+### Download Link
+- **Fixed URL**: `zkbwallet.apk` (always points to latest version)
+- **Access**: https://download.zkbwallets.xyz/zkbwallet.apk
+
 ## 📁 Project Structure
 
 ```
@@ -64,8 +89,14 @@ zkbwallet/
 ├── user.html           # User features page
 ├── developer.html      # Developer resources page
 ├── business.html       # Business solutions page
+├── upload-apk.html     # APK upload interface
 ├── styles.css          # Stylesheet
 ├── script.js           # JavaScript functionality
+├── api/
+│   ├── upload-apk.js   # APK upload API
+│   └── upload-to-server.js # Server forwarding API
+├── package.json        # Dependencies and scripts
+├── vercel.json         # Vercel configuration
 └── README.md           # Project documentation
 ```
 
@@ -151,9 +182,39 @@ Edit CSS variables in `styles.css`:
 
 MIT License - Free to use and modify
 
+## 🚀 Deployment
+
+This project is deployed on Vercel with automatic deployment from GitHub:
+
+1. **Automatic Deployment**: Push to `main` branch triggers deployment
+2. **Environment**: Production environment with serverless functions
+3. **Domain**: https://download.zkbwallets.xyz
+4. **APK Upload**: Available at `/upload-apk.html`
+
+### Manual Deployment
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy to production
+vercel --prod
+```
+
 ## 🤝 Contributing
 
 Issues and Pull Requests are welcome!
+
+### Development Setup
+```bash
+# Clone repository
+git clone https://github.com/nbc111/zkbwallet-website.git
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
 
 ## 📞 Contact
 
