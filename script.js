@@ -33,7 +33,7 @@ function downloadApp(platform) {
 // 下载APK
 function downloadAPK() {
     // 打开APK下载链接
-    window.open('zkbwallet.apk', '_blank');
+    window.open('http://206.238.197.207:3333/down/zkbwallet.apk', '_blank');
 }
 
 function switchLanguage(lang) {
