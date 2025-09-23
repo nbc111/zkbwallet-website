@@ -2,7 +2,7 @@
   "outputDirectory": ".",
   "functions": {
     "api/upload-apk.js": {
-      "maxDuration": 30,
+      "maxDuration": 10,
       "memory": 1024
     },
     "api/upload-to-server.js": {

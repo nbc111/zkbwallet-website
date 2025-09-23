@@ -43,7 +43,7 @@ export default async function handler(req, res) {
     });
 
     // 调用您的服务器API
-    const serverResponse = await fetch('http://206.238.197.207:3001/upload-apk', {
+    const serverResponse = await fetch('http://206.238.197.207:3333/upload-apk', {
       method: 'POST',
       body: formData,
       headers: formData.getHeaders()

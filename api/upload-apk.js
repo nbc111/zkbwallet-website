@@ -15,6 +15,8 @@ export default async function handler(req, res) {
       message: 'APK上传API正在运行',
       limit: '4.5MB',
       note: 'Vercel serverless函数有严格限制',
+      recommendation: '建议使用 /api/upload-to-server 接口或直接上传到服务器',
+      serverUpload: 'http://206.238.197.207:3333/upload-apk.html',
       timestamp: new Date().toISOString()
     });
   }
