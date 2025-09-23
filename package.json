@@ -7,11 +7,7 @@
     "build": "echo 'Static site - no build needed'",
     "deploy": "vercel --prod"
   },
-  "dependencies": {
-    "formidable": "^3.5.1",
-    "form-data": "^4.0.0",
-    "node-fetch": "^2.7.0"
-  },
+  "dependencies": {},
   "keywords": ["zkbwallet", "website", "apk", "upload"],
   "author": "ZKBWallet Team",
   "license": "MIT"

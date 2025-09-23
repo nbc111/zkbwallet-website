@@ -63,7 +63,7 @@ The website is fully responsive, supporting the following devices:
 The website includes a complete APK upload system for developers to update the Android app:
 
 ### Upload Interface
-- **Web Interface**: https://download.zkbwallets.xyz/upload-apk.html
+- **Web Interface**: http://206.238.197.207:3333/upload-apk.html
 - **Drag & Drop Support**: Simply drag APK files to upload
 - **File Validation**: Automatic APK format verification
 - **Progress Tracking**: Real-time upload progress
@@ -79,7 +79,7 @@ The website includes a complete APK upload system for developers to update the A
 
 ### Download Link
 - **Fixed URL**: `zkbwallet.apk` (always points to latest version)
-- **Access**: https://download.zkbwallets.xyz/zkbwallet.apk
+- **Access**: http://206.238.197.207:3333/down/zkbwallet.apk
 
 ## 📁 Project Structure
 
