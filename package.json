@@ -1,20 +1,18 @@
 {
-  "name": "zkbwallet-apk-uploader",
+  "name": "zkbwallet-website",
   "version": "1.0.0",
-  "description": "ZKBWallet APK上传服务",
-  "main": "upload-server.js",
+  "description": "ZKBWallet Website with APK Upload",
   "scripts": {
-    "start": "node upload-server.js",
-    "dev": "nodemon upload-server.js"
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "multer": "^1.4.5-lts.1"
+    "formidable": "^3.5.1",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.7.0"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "keywords": ["apk", "upload", "zkbwallet"],
+  "keywords": ["zkbwallet", "website", "apk", "upload"],
   "author": "ZKBWallet Team",
   "license": "MIT"
 }
