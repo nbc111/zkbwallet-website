@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "functions": {
     "api/upload-apk.js": {
       "maxDuration": 30,
