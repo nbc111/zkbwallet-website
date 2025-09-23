@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APK上传 - ZKBWallet</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .upload-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        .upload-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .file-input-label {
+            display: block;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+        .file-input-label:hover {
+            border-color: #3b82f6;
+            background: #f0f9ff;
+        }
+        .file-input-label.dragover {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+        .upload-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .upload-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .status-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        .status-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        .status-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+        .file-info {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h1 class="upload-title">APK文件上传</h1>
+        <form class="upload-form" id="uploadForm">
+            <div class="file-input-wrapper">
+                <input type="file" id="apkFile" class="file-input" accept=".apk" required>
+                <label for="apkFile" class="file-input-label" id="fileLabel">
+                    <div>📱 点击选择APK文件或拖拽到此处</div>
+                    <div style="font-size: 14px; color: #6b7280; margin-top: 5px;">
+                        支持 .apk 格式文件
+                    </div>
+                </label>
+            </div>
+            <div id="fileInfo" class="file-info" style="display: none;"></div>
+            <button type="submit" class="upload-btn" id="uploadBtn" disabled>
+                上传并更新APK
+            </button>
+            <div id="statusMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('apkFile');
+        const fileLabel = document.getElementById('fileLabel');
+        const fileInfo = document.getElementById('fileInfo');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadForm = document.getElementById('uploadForm');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // 文件选择处理
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.name.toLowerCase().endsWith('.apk')) {
+                    fileInfo.innerHTML = `
+                        <strong>文件名:</strong> ${file.name}<br>
+                        <strong>大小:</strong> ${(file.size / 1024 / 1024).toFixed(2)} MB<br>
+                        <strong>类型:</strong> ${file.type || 'application/vnd.android.package-archive'}
+                    `;
+                    fileInfo.style.display = 'block';
+                    uploadBtn.disabled = false;
+                    fileLabel.innerHTML = `✅ ${file.name}`;
+                } else {
+                    alert('请选择APK文件！');
+                    fileInput.value = '';
+                    uploadBtn.disabled = true;
+                    fileInfo.style.display = 'none';
+                    fileLabel.innerHTML = '📱 点击选择APK文件或拖拽到此处';
+                }
+            }
+        });
+
+        // 拖拽处理
+        fileLabel.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            fileLabel.classList.add('dragover');
+        });
+
+        fileLabel.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            fileLabel.classList.remove('dragover');
+        });
+
+        fileLabel.addEventListener('drop', function(e) {
+            e.preventDefault();
+            fileLabel.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // 表单提交处理
+        uploadForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const file = fileInput.files[0];
+            if (!file) {
+                showStatus('请选择APK文件！', 'error');
+                return;
+            }
+
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = '上传中...';
+
+            const formData = new FormData();
+            formData.append('apk', file);
+
+            try {
+                const response = await fetch('/upload-apk', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showStatus(`✅ 上传成功！<br>APK已更新，下载地址保持不变`, 'success');
+                    fileInput.value = '';
+                    fileInfo.style.display = 'none';
+                    fileLabel.innerHTML = '📱 点击选择APK文件或拖拽到此处';
+                } else {
+                    showStatus(`❌ 上传失败：${result.error}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ 上传失败：${error.message}`, 'error');
+            } finally {
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = '上传并更新APK';
+            }
+        });
+
+        function showStatus(message, type) {
+            statusMessage.innerHTML = message;
+            statusMessage.className = `status-message status-${type}`;
+            statusMessage.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

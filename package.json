@@ -1,0 +1,20 @@
+{
+  "name": "zkbwallet-apk-uploader",
+  "version": "1.0.0",
+  "description": "ZKBWallet APK上传服务",
+  "main": "upload-server.js",
+  "scripts": {
+    "start": "node upload-server.js",
+    "dev": "nodemon upload-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["apk", "upload", "zkbwallet"],
+  "author": "ZKBWallet Team",
+  "license": "MIT"
+}
