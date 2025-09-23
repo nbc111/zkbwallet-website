@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       message: 'APK上传API正在运行',
+      limit: '10MB',
       timestamp: new Date().toISOString()
     });
   }
@@ -22,7 +23,20 @@ export default async function handler(req, res) {
   }
 
   try {
-    // 简化的处理逻辑，先测试基本功能
+    // 检查请求体大小
+    const contentLength = parseInt(req.headers['content-length'] || '0');
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    
+    if (contentLength > maxSize) {
+      return res.status(413).json({
+        error: '文件太大',
+        message: `文件大小 ${(contentLength / 1024 / 1024).toFixed(2)} MB 超过了 10 MB 限制`,
+        limit: '10MB',
+        received: `${(contentLength / 1024 / 1024).toFixed(2)} MB`
+      });
+    }
+
+    // 简化的处理逻辑
     const contentType = req.headers['content-type'] || '';
     
     if (!contentType.includes('multipart/form-data')) {
@@ -37,6 +51,7 @@ export default async function handler(req, res) {
       success: true,
       message: 'APK上传成功！',
       details: '文件已接收，此版本为演示版本',
+      fileSize: `${(contentLength / 1024 / 1024).toFixed(2)} MB`,
       timestamp: new Date().toISOString()
     });
 

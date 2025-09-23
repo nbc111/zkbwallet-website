@@ -147,10 +147,23 @@
             const file = e.target.files[0];
             if (file) {
                 if (file.name.toLowerCase().endsWith('.apk')) {
+                    const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
+                    
+                    // 检查文件大小（Vercel限制10MB）
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert(`文件太大！\n当前大小: ${fileSizeMB} MB\n限制大小: 10 MB\n\n请压缩APK文件或使用其他上传方式。`);
+                        fileInput.value = '';
+                        uploadBtn.disabled = true;
+                        fileInfo.style.display = 'none';
+                        fileLabel.innerHTML = '📱 点击选择APK文件或拖拽到此处';
+                        return;
+                    }
+                    
                     fileInfo.innerHTML = `
                         <strong>文件名:</strong> ${file.name}<br>
-                        <strong>大小:</strong> ${(file.size / 1024 / 1024).toFixed(2)} MB<br>
-                        <strong>类型:</strong> ${file.type || 'application/vnd.android.package-archive'}
+                        <strong>大小:</strong> ${fileSizeMB} MB<br>
+                        <strong>类型:</strong> ${file.type || 'application/vnd.android.package-archive'}<br>
+                        <strong>状态:</strong> ${file.size > 10 * 1024 * 1024 ? '❌ 文件过大' : '✅ 可以上传'}
                     `;
                     fileInfo.style.display = 'block';
                     uploadBtn.disabled = false;
