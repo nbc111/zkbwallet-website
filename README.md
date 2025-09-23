@@ -68,9 +68,9 @@ The website includes a complete APK upload system for developers to update the A
 - **File Validation**: Automatic APK format verification
 - **Progress Tracking**: Real-time upload progress
 
-### API Endpoints
-- **POST** `/api/upload-apk` - Upload APK file
-- **POST** `/api/upload-to-server` - Forward to external server
+### Upload System
+- **Web Interface**: Direct upload to server
+- **Server API**: `http://206.238.197.207:3333/upload-apk`
 
 ### File Requirements
 - **Format**: Must be `.apk` file
@@ -89,12 +89,8 @@ zkbwallet/
 ├── user.html           # User features page
 ├── developer.html      # Developer resources page
 ├── business.html       # Business solutions page
-├── upload-apk.html     # APK upload interface
 ├── styles.css          # Stylesheet
 ├── script.js           # JavaScript functionality
-├── api/
-│   ├── upload-apk.js   # APK upload API
-│   └── upload-to-server.js # Server forwarding API
 ├── package.json        # Dependencies and scripts
 ├── vercel.json         # Vercel configuration
 └── README.md           # Project documentation
@@ -189,7 +185,7 @@ This project is deployed on Vercel with automatic deployment from GitHub:
 1. **Automatic Deployment**: Push to `main` branch triggers deployment
 2. **Environment**: Production environment with serverless functions
 3. **Domain**: https://download.zkbwallets.xyz
-4. **APK Upload**: Available at `/upload-apk.html`
+4. **APK Upload**: Available at `http://206.238.197.207:3333/upload-apk.html`
 
 ### Manual Deployment
 ```bash
