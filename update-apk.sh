@@ -11,8 +11,9 @@ if [ $# -eq 0 ]; then
 fi
 
 NEW_APK="$1"
-FIXED_APK_PATH="/var/www/apk-downloads/zkbwallet.apk"
-BACKUP_DIR="/var/www/apk-downloads/backups"
+WORK_DIR="/var/www/zkbwallet"
+FIXED_APK_PATH="$WORK_DIR/zkbwallet.apk"
+BACKUP_DIR="$WORK_DIR/backups"
 
 # 检查新APK文件是否存在
 if [ ! -f "$NEW_APK" ]; then
@@ -48,9 +49,9 @@ FILE_SIZE=$(du -h "$FIXED_APK_PATH" | cut -f1)
 echo "APK更新成功!"
 echo "文件路径: $FIXED_APK_PATH"
 echo "文件大小: $FILE_SIZE"
-echo "下载地址: https://206.238.196.207:36345/down/zkbwallet.apk"
+echo "下载地址: http://206.238.197.207:8081/zkbwallet.apk"
 
 # 清理旧备份（保留最近5个）
 cd "$BACKUP_DIR"
-ls -t zkbwallet-backup-*.apk | tail -n +6 | xargs -r rm
+ls -t zkbwallet-backup-*.apk 2>/dev/null | tail -n +6 | xargs -r rm
 echo "已清理旧备份文件"

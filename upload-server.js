@@ -42,34 +42,67 @@ app.post('/upload-apk', upload.single('apk'), (req, res) => {
     }
 
     const uploadedFile = req.file.path;
-    const updateScript = '/usr/local/bin/update-apk.sh';
+    const websiteDir = '/var/www/zkbwallet';
+    const targetFile = `${websiteDir}/zkbwallet.apk`;
+    const backupDir = `${websiteDir}/backups`;
 
-    // 执行更新脚本
-    exec(`${updateScript} ${uploadedFile}`, (error, stdout, stderr) => {
+    try {
+        // 创建备份目录
+        if (!fs.existsSync(backupDir)) {
+            fs.mkdirSync(backupDir, { recursive: true });
+        }
+
+        // 备份当前APK（如果存在）
+        if (fs.existsSync(targetFile)) {
+            const backupName = `zkbwallet-backup-${Date.now()}.apk`;
+            fs.copyFileSync(targetFile, `${backupDir}/${backupName}`);
+            console.log(`已备份当前APK到: ${backupDir}/${backupName}`);
+        }
+
+        // 复制新APK文件
+        fs.copyFileSync(uploadedFile, targetFile);
+
+        // 设置权限
+        exec(`chown www-data:www-data "${targetFile}" && chmod 644 "${targetFile}"`, (error) => {
+            // 清理临时文件
+            fs.unlink(uploadedFile, (err) => {
+                if (err) console.error('清理临时文件失败:', err);
+            });
+
+            if (error) {
+                console.error('设置权限失败:', error);
+                return res.status(500).json({ 
+                    error: `设置权限失败: ${error.message}` 
+                });
+            }
+
+            const stats = fs.statSync(targetFile);
+            const fileSize = (stats.size / 1024 / 1024).toFixed(2);
+
+            console.log('APK更新成功');
+            res.json({ 
+                success: true, 
+                message: 'APK更新成功！',
+                details: `文件大小: ${fileSize} MB\n下载地址: http://206.238.197.207:8081/zkbwallet.apk`
+            });
+        });
+
+    } catch (error) {
         // 清理临时文件
         fs.unlink(uploadedFile, (err) => {
             if (err) console.error('清理临时文件失败:', err);
         });
 
-        if (error) {
-            console.error('更新APK失败:', error);
-            return res.status(500).json({ 
-                error: `更新失败: ${error.message}` 
-            });
-        }
-
-        console.log('APK更新成功:', stdout);
-        res.json({ 
-            success: true, 
-            message: 'APK更新成功！',
-            details: stdout
+        console.error('更新APK失败:', error);
+        res.status(500).json({ 
+            error: `更新失败: ${error.message}` 
         });
-    });
+    }
 });
 
 // 获取当前APK信息
 app.get('/apk-info', (req, res) => {
-    const apkPath = '/var/www/apk-downloads/zkbwallet.apk';
+    const apkPath = '/var/www/zkbwallet/zkbwallet.apk';
     
     fs.stat(apkPath, (err, stats) => {
         if (err) {
@@ -80,7 +113,7 @@ app.get('/apk-info', (req, res) => {
             size: stats.size,
             sizeFormatted: (stats.size / 1024 / 1024).toFixed(2) + ' MB',
             lastModified: stats.mtime,
-            downloadUrl: 'https://206.238.196.207:36345/down/zkbwallet.apk'
+            downloadUrl: 'http://206.238.197.207:8081/zkbwallet.apk'
         });
     });
 });
