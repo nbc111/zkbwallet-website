@@ -203,22 +203,32 @@
             formData.append('apk', file);
 
             try {
-                const response = await fetch('/upload-apk', {
+                const response = await fetch('/api/upload-apk', {
                     method: 'POST',
                     body: formData
                 });
 
+                // 检查响应是否为JSON
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await response.text();
+                    console.error('Non-JSON response:', text);
+                    showStatus(`❌ 服务器错误：返回了非JSON格式的响应`, 'error');
+                    return;
+                }
+
                 const result = await response.json();
 
-                if (response.ok) {
-                    showStatus(`✅ 上传成功！<br>APK已更新，下载地址保持不变`, 'success');
+                if (response.ok && result.success) {
+                    showStatus(`✅ ${result.message}<br>${result.details}`, 'success');
                     fileInput.value = '';
                     fileInfo.style.display = 'none';
                     fileLabel.innerHTML = '📱 点击选择APK文件或拖拽到此处';
                 } else {
-                    showStatus(`❌ 上传失败：${result.error}`, 'error');
+                    showStatus(`❌ 上传失败：${result.error || '未知错误'}`, 'error');
                 }
             } catch (error) {
+                console.error('Upload error:', error);
                 showStatus(`❌ 上传失败：${error.message}`, 'error');
             } finally {
                 uploadBtn.disabled = false;
