@@ -132,6 +132,21 @@
             </button>
             <div id="statusMessage"></div>
         </form>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; font-size: 14px; color: #6b7280;">
+            <h4 style="margin: 0 0 10px 0; color: #374151;">📋 上传说明</h4>
+            <p style="margin: 5px 0;"><strong>文件大小限制：</strong> 4.5MB（Vercel限制）</p>
+            <p style="margin: 5px 0;"><strong>大文件上传方式：</strong></p>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                <li>使用SCP/SFTP直接上传到服务器</li>
+                <li>压缩APK文件减小体积</li>
+                <li>使用云存储服务（如Google Drive、Dropbox）</li>
+            </ul>
+            <p style="margin: 5px 0;"><strong>服务器命令：</strong></p>
+            <code style="background: #e5e7eb; padding: 2px 6px; border-radius: 4px; font-size: 12px;">
+                scp app.apk root@206.238.197.207:/var/www/zkbwallet/zkbwallet.apk
+            </code>
+        </div>
     </div>
 
     <script>
@@ -149,9 +164,9 @@
                 if (file.name.toLowerCase().endsWith('.apk')) {
                     const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
                     
-                    // 检查文件大小（Vercel限制10MB）
-                    if (file.size > 10 * 1024 * 1024) {
-                        alert(`文件太大！\n当前大小: ${fileSizeMB} MB\n限制大小: 10 MB\n\n请压缩APK文件或使用其他上传方式。`);
+                    // 检查文件大小（Vercel实际限制约4.5MB）
+                    if (file.size > 4.5 * 1024 * 1024) {
+                        alert(`文件太大！\n当前大小: ${fileSizeMB} MB\n限制大小: 4.5 MB\n\nVercel serverless函数有严格限制。\n\n建议使用以下方式：\n1. 压缩APK文件\n2. 使用SCP/SFTP直接上传到服务器\n3. 使用云存储服务`);
                         fileInput.value = '';
                         uploadBtn.disabled = true;
                         fileInfo.style.display = 'none';
@@ -163,7 +178,7 @@
                         <strong>文件名:</strong> ${file.name}<br>
                         <strong>大小:</strong> ${fileSizeMB} MB<br>
                         <strong>类型:</strong> ${file.type || 'application/vnd.android.package-archive'}<br>
-                        <strong>状态:</strong> ${file.size > 10 * 1024 * 1024 ? '❌ 文件过大' : '✅ 可以上传'}
+                        <strong>状态:</strong> ${file.size > 4.5 * 1024 * 1024 ? '❌ 文件过大' : '✅ 可以上传'}
                     `;
                     fileInfo.style.display = 'block';
                     uploadBtn.disabled = false;

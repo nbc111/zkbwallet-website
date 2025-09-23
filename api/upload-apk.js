@@ -13,7 +13,8 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       message: 'APK上传API正在运行',
-      limit: '10MB',
+      limit: '4.5MB',
+      note: 'Vercel serverless函数有严格限制',
       timestamp: new Date().toISOString()
     });
   }
@@ -25,14 +26,15 @@ export default async function handler(req, res) {
   try {
     // 检查请求体大小
     const contentLength = parseInt(req.headers['content-length'] || '0');
-    const maxSize = 10 * 1024 * 1024; // 10MB
+    const maxSize = 4.5 * 1024 * 1024; // 4.5MB (Vercel实际限制)
     
     if (contentLength > maxSize) {
       return res.status(413).json({
         error: '文件太大',
-        message: `文件大小 ${(contentLength / 1024 / 1024).toFixed(2)} MB 超过了 10 MB 限制`,
-        limit: '10MB',
-        received: `${(contentLength / 1024 / 1024).toFixed(2)} MB`
+        message: `文件大小 ${(contentLength / 1024 / 1024).toFixed(2)} MB 超过了 4.5 MB 限制`,
+        limit: '4.5MB',
+        received: `${(contentLength / 1024 / 1024).toFixed(2)} MB`,
+        suggestion: '请使用SCP/SFTP直接上传到服务器或压缩APK文件'
       });
     }
 
