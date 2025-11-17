@@ -78,8 +78,8 @@ The website includes a complete APK upload system for developers to update the A
 - **Filename**: Any name ending with `.apk` (e.g., `app.apk`, `zkbwallet-v2.0.apk`)
 
 ### Download Link
-- **Fixed URL**: `zkbwallet.apk` (always points to latest version)
-- **Access**: http://206.238.197.207:3333/down/zkbwallet.apk
+- **Fixed URL**: `https://206.238.196.207:36345/down/8nM8IMhGC9JU.apk`
+- **Access**: https://206.238.196.207:36345/down/8nM8IMhGC9JU.apk
 
 ## 📁 Project Structure
 
