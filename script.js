@@ -1,3 +1,7 @@
+/** APK 直链：仅此一处维护，页面上的下载按钮会在加载时自动写入该地址 */
+const APK_DOWNLOAD_URL =
+    'https://common.shiply-cdn.qq.com/16112513/gray/4df21e2e14/prod/1775818769/app-analytics-release0410.apk';
+
 // 语言切换功能
 let currentLang = 'en';
 
@@ -32,8 +36,7 @@ function downloadApp(platform) {
 
 // 下载APK
 function downloadAPK() {
-    // 打开APK下载链接
-    window.open('https://206.238.196.207:36345/down/8nM8IMhGC9JU.apk', '_blank');
+    window.open(APK_DOWNLOAD_URL, '_blank');
 }
 
 function switchLanguage(lang) {
@@ -81,6 +84,11 @@ function switchLanguage(lang) {
 
 // 导航栏功能
 document.addEventListener('DOMContentLoaded', function() {
+    const apkDownloadLink = document.getElementById('apk-download-link');
+    if (apkDownloadLink) {
+        apkDownloadLink.href = APK_DOWNLOAD_URL;
+    }
+
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');

@@ -78,8 +78,7 @@ The website includes a complete APK upload system for developers to update the A
 - **Filename**: Any name ending with `.apk` (e.g., `app.apk`, `zkbwallet-v2.0.apk`)
 
 ### Download Link
-- **Fixed URL**: `https://206.238.196.207:36345/down/8nM8IMhGC9JU.apk`
-- **Access**: https://206.238.196.207:36345/down/8nM8IMhGC9JU.apk
+- **APK 下载地址**：在仓库根目录 `script.js` 文件顶部的常量 `APK_DOWNLOAD_URL` 中统一配置（仅此一处需要修改）
 
 ## 📁 Project Structure
 
